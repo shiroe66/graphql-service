@@ -2,18 +2,21 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ArtistModule } from './modules/artist/artist.module';
+import { join } from 'path';
+import { ArtistsModule } from './modules/artists/artists.module';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: join(process.cwd(), 'src/graphql.ts'),
+      },
+      playground: true,
       driver: ApolloDriver,
-      autoSchemaFile: true,
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/nest'),
-    ArtistModule,
+    ArtistsModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
