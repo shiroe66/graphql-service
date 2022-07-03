@@ -1,9 +1,10 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { MongooseModule } from '@nestjs/mongoose';
-import { join } from 'path';
-import { ArtistsModule } from './modules/artists/artists.module';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { Module } from '@nestjs/common'
+import { GraphQLModule } from '@nestjs/graphql'
+import { join } from 'path'
+import { ArtistsModule } from './modules/artists/artists.module'
+import { UsersModule } from './modules/users/users.module'
+import { GenresModule } from './modules/genres/genres.module'
 
 @Module({
   imports: [
@@ -15,8 +16,9 @@ import { ArtistsModule } from './modules/artists/artists.module';
       playground: true,
       driver: ApolloDriver,
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     ArtistsModule,
+    UsersModule,
+    GenresModule,
   ],
 })
 export class AppModule {}
