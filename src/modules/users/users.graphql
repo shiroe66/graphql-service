@@ -1,7 +1,40 @@
 type User {
-  id: ID!
-  firstName: String
-  secondName: String
-  password: String
+  _id: ID!
+  firstName: String!
+  lastName: String!
+  password: String!
   email: String!
+  favouriteArtistIds: [String]
+  favouriteSongsIds: [String]
+  favouriteBandsIds: [String]
+  favouriteGenresIds: [String]
+}
+
+type JWT {
+  jwt: String!
+}
+
+input RegisterUser {
+  firstName: String!
+  lastName: String!
+  password: String!
+  email: String!
+  favouriteArtistIds: [String]
+  favouriteSongsIds: [String]
+  favouriteBandsIds: [String]
+  favouriteGenresIds: [String]
+}
+
+input Login {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  register(user: RegisterUser): User
+}
+
+type Query {
+  getUser(id: ID!): User
+  login(login: Login!): JWT
 }
