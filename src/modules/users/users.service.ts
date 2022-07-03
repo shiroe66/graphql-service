@@ -11,8 +11,12 @@ export class UsersService {
   }
 
   async create(user: RegisterUser) {
-    const { data } = await this.user.post('/register', user)
-    return data
+    try {
+      const { data } = await this.user.post('/register', user)
+      return data
+    } catch (error) {
+      console.error(error.response.data)
+    }
   }
 
   async findOneById(id: string) {
