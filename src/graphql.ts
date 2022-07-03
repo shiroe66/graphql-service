@@ -45,10 +45,26 @@ export interface MemberInput {
 }
 
 export interface GenreInput {
-    name: string;
+    name?: Nullable<string>;
     description?: Nullable<string>;
-    country: string;
+    country?: Nullable<string>;
     year?: Nullable<number>;
+}
+
+export interface RegisterUser {
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    favouriteArtistIds?: Nullable<Nullable<string>[]>;
+    favouriteSongsIds?: Nullable<Nullable<string>[]>;
+    favouriteBandsIds?: Nullable<Nullable<string>[]>;
+    favouriteGenresIds?: Nullable<Nullable<string>[]>;
+}
+
+export interface Login {
+    email: string;
+    password: string;
 }
 
 export interface Album {
@@ -77,11 +93,14 @@ export interface Artist {
 export interface IQuery {
     artists(limit?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
+    login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
 
 export interface IMutation {
     createArtist(input?: Nullable<CreateArtistInput>): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateArtist(id: string, input?: Nullable<UpdateArtistInput>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
@@ -116,6 +135,13 @@ export interface Genre {
     year?: Nullable<number>;
 }
 
+export interface PaginatedReponse {
+    items?: Nullable<Nullable<Genre>[]>;
+    offset?: Nullable<number>;
+    limit?: Nullable<number>;
+    total?: Nullable<number>;
+}
+
 export interface Track {
     id: string;
     title: string;
@@ -127,11 +153,19 @@ export interface Track {
 }
 
 export interface User {
-    id: string;
-    firstName?: Nullable<string>;
-    secondName?: Nullable<string>;
-    password?: Nullable<string>;
+    _id: string;
+    firstName: string;
+    lastName: string;
+    password: string;
     email: string;
+    favouriteArtistIds?: Nullable<Nullable<string>[]>;
+    favouriteSongsIds?: Nullable<Nullable<string>[]>;
+    favouriteBandsIds?: Nullable<Nullable<string>[]>;
+    favouriteGenresIds?: Nullable<Nullable<string>[]>;
+}
+
+export interface JWT {
+    jwt: string;
 }
 
 type Nullable<T> = T | null;

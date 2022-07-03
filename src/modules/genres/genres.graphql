@@ -7,8 +7,19 @@ type Genre {
 }
 
 input GenreInput {
-  name: String!
+  name: String
   description: String
-  country: String!
+  country: String
   year: Int
 }
+
+type PaginatedReponse {
+  items: [Genre]
+  offset: Int
+  limit: Int
+  total: Int
+}
+
+# type Query {
+#   getAll(): PaginatedReponse
+# }
