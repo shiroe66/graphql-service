@@ -46,4 +46,5 @@ type Query {
 type Mutation {
   createArtist(artist: CreateArtist): Artist
   updateArtist(id: ID!, artist: UpdateArtist): Artist
+  deleteArtist(id: ID!): Artist
 }

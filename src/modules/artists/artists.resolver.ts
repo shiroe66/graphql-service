@@ -20,6 +20,11 @@ export class ArtistsResolver {
     return this.artistsService.update(id, artist, token)
   }
 
+  @Mutation('deleteArtist')
+  async deleteArtist(@Args('id') id: string, @Context('token') token: any) {
+    return this.artistsService.delete(id, token)
+  }
+
   @Query('getById')
   async getById(@Args('id') id: string) {
     return this.artistsService.getById(id)

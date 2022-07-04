@@ -43,5 +43,12 @@ export class ArtistsService {
     }
   }
 
-  async delete() {}
+  async delete(id: string, token: any) {
+    try {
+      const { data } = await this.client.delete(`/${id}`, { headers: { Authorization: token } })
+      return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
