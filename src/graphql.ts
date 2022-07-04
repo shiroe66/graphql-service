@@ -7,19 +7,24 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export interface CreateArtistInput {
+export interface Paginate {
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+}
+
+export interface CreateArtist {
     firstName: string;
-    secondName?: Nullable<string>;
+    secondName: string;
     middleName?: Nullable<string>;
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
-    country?: Nullable<string>;
-    bands?: Nullable<Nullable<BandInput>[]>;
-    instruments?: Nullable<string>;
+    country: string;
+    bands?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateArtistInput {
-    id: string;
+    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -79,7 +84,7 @@ export interface Album {
 }
 
 export interface Artist {
-    id: string;
+    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -91,14 +96,14 @@ export interface Artist {
 }
 
 export interface IQuery {
-    artists(limit?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
+    getAll(Paginate?: Nullable<Paginate>): Nullable<PaginatedResponse> | Promise<Nullable<PaginatedResponse>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
 
 export interface IMutation {
-    createArtist(input?: Nullable<CreateArtistInput>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateArtist(id: string, input?: Nullable<UpdateArtistInput>): Nullable<Artist> | Promise<Nullable<Artist>>;
     register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
@@ -135,7 +140,7 @@ export interface Genre {
     year?: Nullable<number>;
 }
 
-export interface PaginatedReponse {
+export interface PaginatedResponse {
     items?: Nullable<Nullable<Genre>[]>;
     offset?: Nullable<number>;
     limit?: Nullable<number>;
