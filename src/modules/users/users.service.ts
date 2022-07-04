@@ -26,6 +26,7 @@ export class UsersService {
 
   async login(loginDto: Login) {
     const { data } = await this.user.post('/login', loginDto)
+
     return data
   }
 }

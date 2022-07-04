@@ -13,6 +13,10 @@ import { GenresModule } from './modules/genres/genres.module'
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
       },
+      context: ({ req }) => {
+        const token = req.headers.authorization || ''
+        return { token }
+      },
       playground: true,
       driver: ApolloDriver,
     }),
