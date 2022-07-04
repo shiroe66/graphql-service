@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { ArtistsService } from './artists.service';
-import { ArtistsResolver } from './artists.resolver';
+import { Module } from '@nestjs/common'
+import { ArtistsService } from './artists.service'
+import { ArtistsResolver } from './artists.resolver'
 
 @Module({
-  providers: [ArtistsService, ArtistsResolver]
+  providers: [ArtistsService, ArtistsResolver],
 })
 export class ArtistsModule {}

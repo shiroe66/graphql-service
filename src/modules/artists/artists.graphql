@@ -1,5 +1,5 @@
 type Artist {
-  id: ID!
+  _id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -10,19 +10,24 @@ type Artist {
   instruments: String
 }
 
-input CreateArtistInput {
+input Paginate {
+  limit: Int
+  offset: Int
+}
+
+input CreateArtist {
   firstName: String!
-  secondName: String
+  secondName: String!
   middleName: String
   birthDate: String
   birthPlace: String
-  country: String
-  bands: [BandInput]
-  instruments: String
+  country: String!
+  bands: [String]
+  instruments: [String]
 }
 
 input UpdateArtistInput {
-  id: ID!
+  _id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -34,11 +39,11 @@ input UpdateArtistInput {
 }
 
 type Query {
-  artists(limit: Int): [Artist]
+  getAll(Paginate: Paginate): PaginatedResponse
   artist(id: ID!): Artist
 }
 
 type Mutation {
-  createArtist(input: CreateArtistInput): Artist
+  createArtist(artist: CreateArtist): Artist
   updateArtist(id: ID!, input: UpdateArtistInput): Artist
 }
