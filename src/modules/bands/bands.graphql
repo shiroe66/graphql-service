@@ -1,10 +1,17 @@
 type Band {
-  id: ID!
+  _id: ID!
   name: String
   origin: String
   members: [Member]
   website: String
   genres: [Genre]
+}
+
+type BandsData {
+  items: [Band]
+  offset: Int
+  limit: Int
+  total: Int
 }
 
 type Member {
@@ -13,8 +20,17 @@ type Member {
   years: String
 }
 
-input BandInput {
+input CreateBand {
   name: String!
+  origin: String
+  members: [MemberInput]
+  website: String
+  genres: [GenreInput]
+}
+
+input UpdateBand {
+  _id: ID
+  name: String
   origin: String
   members: [MemberInput]
   website: String
@@ -25,4 +41,15 @@ input MemberInput {
   artist: String
   instrument: String
   years: String
+}
+
+type Query {
+  getAllBands(Paginate: Paginate): BandsData
+  getByIdBand(id: ID!): Band
+}
+
+type Mutation {
+  createBand(band: CreateBand): Band
+  updateBand(id: ID!, band: UpdateBand): Band
+  deleteBand(id: ID!): Band
 }
