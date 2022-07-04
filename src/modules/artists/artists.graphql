@@ -41,13 +41,13 @@ input UpdateArtist {
   birthDate: String
   birthPlace: String
   country: String
-  bands: [BandInput]
+  bands: [CreateBand]
   instruments: String
 }
 
 type Query {
-  getAll(Paginate: Paginate): ArtistData
-  getById(id: ID!): Artist
+  getAllArtists(Paginate: Paginate): ArtistData
+  getByIdArtist(id: ID!): Artist
 }
 
 type Mutation {

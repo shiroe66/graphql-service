@@ -25,12 +25,12 @@ export class ArtistsResolver {
     return this.artistsService.delete(id, token)
   }
 
-  @Query('getById')
+  @Query('getByIdArtist')
   async getById(@Args('id') id: string) {
     return this.artistsService.getById(id)
   }
 
-  @Query('getAll')
+  @Query('getAllArtists')
   async getAll(@Args('Paginate') { limit, offset }) {
     return this.artistsService.getAll({ limit, offset })
   }

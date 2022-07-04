@@ -31,12 +31,21 @@ export interface UpdateArtist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
-    bands?: Nullable<Nullable<BandInput>[]>;
+    bands?: Nullable<Nullable<CreateBand>[]>;
     instruments?: Nullable<string>;
 }
 
-export interface BandInput {
+export interface CreateBand {
     name: string;
+    origin?: Nullable<string>;
+    members?: Nullable<Nullable<MemberInput>[]>;
+    website?: Nullable<string>;
+    genres?: Nullable<Nullable<GenreInput>[]>;
+}
+
+export interface UpdateBand {
+    _id?: Nullable<string>;
+    name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<MemberInput>[]>;
     website?: Nullable<string>;
@@ -103,8 +112,10 @@ export interface ArtistData {
 }
 
 export interface IQuery {
-    getAll(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
-    getById(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    getAllArtists(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
+    getByIdArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    getAllBands(Paginate?: Nullable<Paginate>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
+    getByIdBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
@@ -113,16 +124,26 @@ export interface IMutation {
     createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
     deleteArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    deleteBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
     website?: Nullable<string>;
     genres?: Nullable<Nullable<Genre>[]>;
+}
+
+export interface BandsData {
+    items?: Nullable<Nullable<Band>[]>;
+    offset?: Nullable<number>;
+    limit?: Nullable<number>;
+    total?: Nullable<number>;
 }
 
 export interface Member {
