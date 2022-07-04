@@ -31,7 +31,7 @@ export class ArtistsResolver {
   }
 
   @Query('getAll')
-  async getAll(@Args('limit') limit: number, @Args('offset') offset: number) {
-    return this.artistsService.findAll({ limit, offset })
+  async getAll(@Args('Paginate') { limit, offset }) {
+    return this.artistsService.getAll({ limit, offset })
   }
 }

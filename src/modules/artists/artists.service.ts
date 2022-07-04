@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { CreateArtist, UpdateArtist } from 'src/graphql'
+import { CreateArtist, Paginate, UpdateArtist } from 'src/graphql'
 
 @Injectable()
 export class ArtistsService {
@@ -14,9 +14,13 @@ export class ArtistsService {
     return data
   }
 
-  async findAll({ limit, offset: number }) {
-    const { data } = await this.client.get('/')
-    return data
+  async getAll({ limit, offset }: Paginate) {
+    try {
+      const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
+      return data
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   async create(artist: CreateArtist, token: any) {

@@ -15,6 +15,13 @@ input Paginate {
   offset: Int
 }
 
+type ArtistData {
+  items: [Artist]
+  offset: Int
+  limit: Int
+  total: Int
+}
+
 input CreateArtist {
   firstName: String!
   secondName: String!
@@ -39,7 +46,7 @@ input UpdateArtist {
 }
 
 type Query {
-  getAll(Paginate: Paginate): PaginatedResponse
+  getAll(Paginate: Paginate): ArtistData
   getById(id: ID!): Artist
 }
 

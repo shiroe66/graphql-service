@@ -95,8 +95,15 @@ export interface Artist {
     instruments?: Nullable<string>;
 }
 
+export interface ArtistData {
+    items?: Nullable<Nullable<Artist>[]>;
+    offset?: Nullable<number>;
+    limit?: Nullable<number>;
+    total?: Nullable<number>;
+}
+
 export interface IQuery {
-    getAll(Paginate?: Nullable<Paginate>): Nullable<PaginatedResponse> | Promise<Nullable<PaginatedResponse>>;
+    getAll(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
     getById(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
@@ -142,7 +149,7 @@ export interface Genre {
 }
 
 export interface PaginatedResponse {
-    items?: Nullable<Nullable<Genre>[]>;
+    items?: Nullable<Nullable<Artist>[]>;
     offset?: Nullable<number>;
     limit?: Nullable<number>;
     total?: Nullable<number>;
