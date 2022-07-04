@@ -20,6 +20,11 @@ export class ArtistsResolver {
     return this.artistsService.update(id, artist, token)
   }
 
+  @Query('getById')
+  async getById(@Args('id') id: string) {
+    return this.artistsService.getById(id)
+  }
+
   @Query('getAll')
   async getAll(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.artistsService.findAll({ limit, offset })

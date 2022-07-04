@@ -40,7 +40,7 @@ input UpdateArtist {
 
 type Query {
   getAll(Paginate: Paginate): PaginatedResponse
-  artist(id: ID!): Artist
+  getById(id: ID!): Artist
 }
 
 type Mutation {

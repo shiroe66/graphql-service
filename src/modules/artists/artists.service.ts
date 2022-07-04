@@ -9,6 +9,11 @@ export class ArtistsService {
     this.client = axios.create({ baseURL: process.env.ARTISTS_URL })
   }
 
+  async getById(id: string) {
+    const { data } = await this.client.get(`/${id}`)
+    return data
+  }
+
   async findAll({ limit, offset: number }) {
     const { data } = await this.client.get('/')
     return data

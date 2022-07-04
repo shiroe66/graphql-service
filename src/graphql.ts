@@ -97,7 +97,7 @@ export interface Artist {
 
 export interface IQuery {
     getAll(Paginate?: Nullable<Paginate>): Nullable<PaginatedResponse> | Promise<Nullable<PaginatedResponse>>;
-    artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    getById(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
