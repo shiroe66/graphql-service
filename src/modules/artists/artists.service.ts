@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { CreateArtist } from 'src/graphql'
-import 'dotenv/config'
+import { CreateArtist, UpdateArtist } from 'src/graphql'
 
 @Injectable()
 export class ArtistsService {
@@ -27,7 +26,17 @@ export class ArtistsService {
     }
   }
 
-  async update() {}
+  async update(id: string, artist: UpdateArtist, token: any) {
+    try {
+      const { data } = await this.client.put(`/${id}`, artist, {
+        headers: { Authorization: token },
+      })
+
+      return data
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   async delete() {}
 }

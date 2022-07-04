@@ -26,8 +26,8 @@ input CreateArtist {
   instruments: [String]
 }
 
-input UpdateArtistInput {
-  _id: ID!
+input UpdateArtist {
+  _id: ID
   firstName: String
   secondName: String
   middleName: String
@@ -45,5 +45,5 @@ type Query {
 
 type Mutation {
   createArtist(artist: CreateArtist): Artist
-  updateArtist(id: ID!, input: UpdateArtistInput): Artist
+  updateArtist(id: ID!, artist: UpdateArtist): Artist
 }

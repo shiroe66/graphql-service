@@ -23,8 +23,8 @@ export interface CreateArtist {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
-export interface UpdateArtistInput {
-    _id: string;
+export interface UpdateArtist {
+    _id?: Nullable<string>;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -104,7 +104,7 @@ export interface IQuery {
 
 export interface IMutation {
     createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
-    updateArtist(id: string, input?: Nullable<UpdateArtistInput>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
     register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
