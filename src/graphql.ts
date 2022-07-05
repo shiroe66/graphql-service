@@ -40,7 +40,7 @@ export interface CreateBand {
     origin?: Nullable<string>;
     members?: Nullable<Nullable<MemberInput>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<GenreInput>[]>;
+    genres?: Nullable<Nullable<CreateGenre>[]>;
 }
 
 export interface UpdateBand {
@@ -49,7 +49,7 @@ export interface UpdateBand {
     origin?: Nullable<string>;
     members?: Nullable<Nullable<MemberInput>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<GenreInput>[]>;
+    genres?: Nullable<Nullable<UpdateGenre>[]>;
 }
 
 export interface MemberInput {
@@ -58,7 +58,14 @@ export interface MemberInput {
     years?: Nullable<string>;
 }
 
-export interface GenreInput {
+export interface CreateGenre {
+    name: string;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
+export interface UpdateGenre {
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;
@@ -114,8 +121,10 @@ export interface ArtistData {
 export interface IQuery {
     getAllArtists(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
     getByIdArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
-    getAllBands(Paginate?: Nullable<Paginate>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
-    getByIdBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    bands(Paginate?: Nullable<Paginate>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
+    band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    genres(Paginate?: Nullable<Paginate>): Nullable<GenresData> | Promise<Nullable<GenresData>>;
+    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
@@ -127,6 +136,9 @@ export interface IMutation {
     createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
     updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
+    deleteGenre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
+    updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
     register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
@@ -162,17 +174,17 @@ export interface Favourites {
 }
 
 export interface Genre {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;
     year?: Nullable<number>;
 }
 
-export interface PaginatedResponse {
-    items?: Nullable<Nullable<Artist>[]>;
-    offset?: Nullable<number>;
+export interface GenresData {
+    items?: Nullable<Nullable<Genre>[]>;
     limit?: Nullable<number>;
+    offset?: Nullable<number>;
     total?: Nullable<number>;
 }
 

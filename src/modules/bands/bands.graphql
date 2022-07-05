@@ -25,7 +25,7 @@ input CreateBand {
   origin: String
   members: [MemberInput]
   website: String
-  genres: [GenreInput]
+  genres: [CreateGenre]
 }
 
 input UpdateBand {
@@ -34,7 +34,7 @@ input UpdateBand {
   origin: String
   members: [MemberInput]
   website: String
-  genres: [GenreInput]
+  genres: [UpdateGenre]
 }
 
 input MemberInput {
@@ -44,8 +44,8 @@ input MemberInput {
 }
 
 type Query {
-  getAllBands(Paginate: Paginate): BandsData
-  getByIdBand(id: ID!): Band
+  bands(Paginate: Paginate): BandsData
+  band(id: ID!): Band
 }
 
 type Mutation {

@@ -25,12 +25,12 @@ export class BandsResolver {
     return this.bandsService.delete(id, token)
   }
 
-  @Query('getByIdBand')
+  @Query('band')
   async getById(@Args('id') id: string) {
     return this.bandsService.getById(id)
   }
 
-  @Query('getAllBands')
+  @Query('bands')
   async getAll(@Args('Paginate') { limit, offset }) {
     return this.bandsService.getAll({ limit, offset })
   }
