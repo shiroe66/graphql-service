@@ -6,6 +6,16 @@ import { ArtistsService } from './artists.service'
 export class ArtistsResolver {
   constructor(private readonly artistsService: ArtistsService) {}
 
+  @Query('artist')
+  async getById(@Args('id') id: string) {
+    return this.artistsService.getById(id)
+  }
+
+  @Query('artists')
+  async getAll(@Args('Paginate') { limit, offset }) {
+    return this.artistsService.getAll({ limit, offset })
+  }
+
   @Mutation('createArtist')
   async createArtist(@Args('artist') artist: CreateArtist, @Context('token') token: any) {
     return this.artistsService.create(artist, token)
@@ -23,15 +33,5 @@ export class ArtistsResolver {
   @Mutation('deleteArtist')
   async deleteArtist(@Args('id') id: string, @Context('token') token: any) {
     return this.artistsService.delete(id, token)
-  }
-
-  @Query('getByIdArtist')
-  async getById(@Args('id') id: string) {
-    return this.artistsService.getById(id)
-  }
-
-  @Query('getAllArtists')
-  async getAll(@Args('Paginate') { limit, offset }) {
-    return this.artistsService.getAll({ limit, offset })
   }
 }

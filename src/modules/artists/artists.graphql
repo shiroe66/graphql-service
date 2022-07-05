@@ -46,8 +46,8 @@ input UpdateArtist {
 }
 
 type Query {
-  getAllArtists(Paginate: Paginate): ArtistData
-  getByIdArtist(id: ID!): Artist
+  artists(Paginate: Paginate): ArtistData
+  artist(id: ID!): Artist
 }
 
 type Mutation {

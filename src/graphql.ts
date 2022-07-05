@@ -119,8 +119,8 @@ export interface ArtistData {
 }
 
 export interface IQuery {
-    getAllArtists(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
-    getByIdArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    artists(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
+    artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(Paginate?: Nullable<Paginate>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     genres(Paginate?: Nullable<Paginate>): Nullable<GenresData> | Promise<Nullable<GenresData>>;
