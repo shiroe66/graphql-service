@@ -1,25 +1,39 @@
 type Genre {
-  id: ID!
+  _id: ID!
   name: String
   description: String
   country: String
   year: Int
 }
 
-input GenreInput {
-  name: String
-  description: String
-  country: String
-  year: Int
-}
-
-type PaginatedReponse {
+type GenresData {
   items: [Genre]
-  offset: Int
   limit: Int
+  offset: Int
   total: Int
 }
 
-# type Query {
-#   getAll(): PaginatedReponse
-# }
+input CreateGenre {
+  name: String!
+  description: String
+  country: String
+  year: Int
+}
+
+input UpdateGenre {
+  name: String
+  description: String
+  country: String
+  year: Int
+}
+
+type Query {
+  genres(Paginate: Paginate): GenresData
+  genre(id: ID!): Genre
+}
+
+type Mutation {
+  createGenre(genre: CreateGenre): Genre
+  deleteGenre(id: ID!): Genre
+  updateGenre(id: ID!, genre: UpdateGenre): Genre
+}
