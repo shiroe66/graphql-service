@@ -1,5 +1,5 @@
 type Artist {
-  _id: ID!
+  id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -8,11 +8,6 @@ type Artist {
   country: String
   bands: [Band]
   instruments: String
-}
-
-input Paginate {
-  limit: Int
-  offset: Int
 }
 
 type ArtistData {
@@ -29,7 +24,7 @@ input CreateArtist {
   birthDate: String
   birthPlace: String
   country: String!
-  bands: [String]
+  bandsIds: [ID]
   instruments: [String]
 }
 
@@ -41,12 +36,12 @@ input UpdateArtist {
   birthDate: String
   birthPlace: String
   country: String
-  bands: [CreateBand]
+  bandsIds: [ID]
   instruments: String
 }
 
 type Query {
-  artists(Paginate: Paginate): ArtistData
+  artists(limit: Int, offset: Int): ArtistData
   artist(id: ID!): Artist
 }
 
