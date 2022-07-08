@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { ArtistData, CreateArtist, UpdateArtist } from 'src/graphql'
+import { CreateArtist, UpdateArtist } from 'src/graphql'
 
 @Injectable()
 export class ArtistsService {
