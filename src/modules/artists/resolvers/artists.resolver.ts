@@ -10,14 +10,14 @@ export class ArtistsResolver {
     private bandsService: BandsService
   ) {}
 
-  @Query('artists')
-  async getAll(@Args('limit') limit: number, @Args('offset') offset: number) {
-    return this.artistsService.getAll({ limit, offset })
-  }
-
   @Query('artist')
   async getById(@Args('id') id: string) {
     return this.artistsService.getById(id)
+  }
+
+  @Query('artists')
+  async getAll(@Args('limit') limit: number, @Args('offset') offset: number) {
+    return this.artistsService.getAll({ limit, offset })
   }
 
   @ResolveField()
