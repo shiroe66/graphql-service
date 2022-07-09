@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { CreateBand, Paginate, UpdateBand } from 'src/graphql'
+import { CreateBand, UpdateBand } from 'src/graphql'
 
 @Injectable()
 export class BandsService {
@@ -15,7 +15,7 @@ export class BandsService {
     return { ...data, id: data._id }
   }
 
-  async getAll({ limit, offset }: Paginate) {
+  async getAll({ limit, offset }) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
       data.items = data.items.map((item) => ({

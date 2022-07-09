@@ -14,7 +14,7 @@ export class ArtistsService {
     return { ...data, id: data._id }
   }
 
-  async getAll({ limit = 20, offset = 1 }) {
+  async getAll({ limit, offset }) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
       data.items = data.items.map((item) => ({
