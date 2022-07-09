@@ -14,37 +14,25 @@ type BandsData {
   total: Int
 }
 
-type Member {
-  artist: String
-  instrument: String
-  years: String
-}
-
 input CreateBand {
   name: String!
   origin: String
-  members: [MemberInput]
+  members: [ID]
   website: String
-  genres: [CreateGenre]
+  genresIds: [ID]
 }
 
 input UpdateBand {
   _id: ID
   name: String
   origin: String
-  members: [MemberInput]
+  members: [ID]
   website: String
-  genres: [UpdateGenre]
-}
-
-input MemberInput {
-  artist: String
-  instrument: String
-  years: String
+  genresIds: [ID]
 }
 
 type Query {
-  bands(Paginate: Paginate): BandsData
+  bands(limit: Int, offset: Int): BandsData
   band(id: ID!): Band
 }
 
@@ -52,4 +40,10 @@ type Mutation {
   createBand(band: CreateBand): Band
   updateBand(id: ID!, band: UpdateBand): Band
   deleteBand(id: ID!): Band
+}
+
+type Member {
+  artist: String
+  instrument: String
+  years: String
 }

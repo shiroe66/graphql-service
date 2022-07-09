@@ -18,7 +18,11 @@ export class BandsService {
   async getAll({ limit, offset }: Paginate) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
-      return { ...data, id: data._id }
+      data.items = data.items.map((item) => ({
+        ...item,
+        id: item._id,
+      }))
+      return data
     } catch (error) {
       console.error(error)
     }
@@ -30,7 +34,7 @@ export class BandsService {
         headers: { Authorization: token },
       })
 
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }
@@ -42,7 +46,7 @@ export class BandsService {
         headers: { Authorization: token },
       })
 
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }
