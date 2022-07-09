@@ -7,28 +7,25 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export interface Paginate {
-    limit?: Nullable<number>;
-    offset?: Nullable<number>;
-}
-
 export interface CreateAlbum {
     name: string;
     released?: Nullable<number>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
-    tracks?: Nullable<Nullable<string>[]>;
-    genres?: Nullable<Nullable<string>[]>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    tracksIds?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
+    image?: Nullable<string>;
 }
 
 export interface UpdateAlbum {
-    _id?: Nullable<string>;
+    id?: Nullable<string>;
     name?: Nullable<string>;
     released?: Nullable<number>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
-    tracks?: Nullable<Nullable<string>[]>;
-    genres?: Nullable<Nullable<string>[]>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    tracksIds?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
+    image?: Nullable<string>;
 }
 
 export interface CreateArtist {
@@ -123,7 +120,7 @@ export interface Login {
 }
 
 export interface Album {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     released?: Nullable<number>;
     artists?: Nullable<Nullable<Artist>[]>;
@@ -141,7 +138,7 @@ export interface AlbumData {
 }
 
 export interface IQuery {
-    albums(Paginate?: Nullable<Paginate>): Nullable<AlbumData> | Promise<Nullable<AlbumData>>;
+    albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<AlbumData> | Promise<Nullable<AlbumData>>;
     album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;

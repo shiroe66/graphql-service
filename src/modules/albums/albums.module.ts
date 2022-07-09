@@ -1,8 +1,19 @@
 import { Module } from '@nestjs/common'
-import { AlbumsResolver } from './albums.resolver'
-import { AlbumsService } from './albums.service'
+import { ArtistsService } from '../artists/services/artists.service'
+import { BandsService } from '../bands/services/bands.service'
+import { GenresService } from '../genres/services/genres.service'
+import { TracksService } from '../tracks/services/tracks.service'
+import { AlbumsResolver } from './resolvers/albums.resolver'
+import { AlbumsService } from './services/albums.service'
 
 @Module({
-  providers: [AlbumsResolver, AlbumsService],
+  providers: [
+    AlbumsResolver,
+    AlbumsService,
+    ArtistsService,
+    BandsService,
+    TracksService,
+    GenresService,
+  ],
 })
 export class AlbumsModule {}

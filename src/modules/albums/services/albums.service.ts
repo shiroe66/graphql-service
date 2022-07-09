@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { CreateAlbum, Paginate, UpdateAlbum } from 'src/graphql'
+import { CreateAlbum, UpdateAlbum } from 'src/graphql'
 
 @Injectable()
 export class AlbumsService {
@@ -11,43 +11,46 @@ export class AlbumsService {
 
   async getById(id: string) {
     const { data } = await this.client.get(`/${id}`)
-    return data
+    return { ...data, id: data._id }
   }
 
-  async getAll({ limit, offset }: Paginate) {
+  async getAll({ limit, offset }) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id }
+      })
       return data
     } catch (error) {
       console.error(error)
     }
   }
 
-  async create(album: CreateAlbum, token: any) {
+  async create(album: CreateAlbum, token: string) {
     try {
       const { data } = await this.client.post('/', album, {
         headers: { Authorization: token },
       })
 
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }
   }
 
-  async update(id: string, album: UpdateAlbum, token: any) {
+  async update(id: string, album: UpdateAlbum, token: string) {
     try {
       const { data } = await this.client.put(`/${id}`, album, {
         headers: { Authorization: token },
       })
 
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }
   }
 
-  async delete(id: string, token: any) {
+  async delete(id: string, token: string) {
     try {
       const { data } = await this.client.delete(`/${id}`, { headers: { Authorization: token } })
       return data

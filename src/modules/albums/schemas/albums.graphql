@@ -1,5 +1,5 @@
 type Album {
-  _id: ID!
+  id: ID!
   name: String
   released: Int
   artists: [Artist]
@@ -19,24 +19,26 @@ type AlbumData {
 input CreateAlbum {
   name: String!
   released: Int
-  artists: [String]
-  bands: [String]
-  tracks: [String]
-  genres: [String]
+  artistsIds: [ID]
+  bandsIds: [ID]
+  tracksIds: [ID]
+  genresIds: [ID]
+  image: String
 }
 
 input UpdateAlbum {
-  _id: ID
+  id: ID
   name: String
   released: Int
-  artists: [String]
-  bands: [String]
-  tracks: [String]
-  genres: [String]
+  artistsIds: [ID]
+  bandsIds: [ID]
+  tracksIds: [ID]
+  genresIds: [ID]
+  image: String
 }
 
 type Query {
-  albums(Paginate: Paginate): AlbumData
+  albums(limit: Int, offset: Int): AlbumData
   album(id: ID!): Album
 }
 
