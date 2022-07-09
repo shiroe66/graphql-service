@@ -1,6 +1,6 @@
 import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { CreateBand, UpdateBand } from 'src/graphql'
-import { GenresService } from 'src/modules/genres/genres.service'
+import { GenresService } from 'src/modules/genres/services/genres.service'
 import { BandsService } from '../services/bands.service'
 
 @Resolver('Band')
@@ -13,7 +13,7 @@ export class BandsResolver {
   }
 
   @Query('bands')
-  async getAll(@Args('Paginate') { limit, offset }) {
+  async getAll(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.bandsService.getAll({ limit, offset })
   }
 
