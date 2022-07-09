@@ -36,33 +36,39 @@ export class TracksResolver {
   async artists(@Parent() track: CreateTrack) {
     const { artistsIds } = track
 
-    return await Promise.all(
+    const data = await Promise.all(
       artistsIds.map((artist: string) => {
         return this.artistsService.getById(artist)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @ResolveField()
   async bands(@Parent() track: CreateTrack) {
     const { bandsIds } = track
 
-    return await Promise.all(
+    const data = await Promise.all(
       bandsIds.map((bands: string) => {
         return this.bandsService.getById(bands)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @ResolveField()
   async genres(@Parent() track: CreateTrack) {
     const { genresIds } = track
 
-    return await Promise.all(
+    const data = await Promise.all(
       genresIds.map((genres: string) => {
         return this.genresService.getById(genres)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @Mutation('createTrack')

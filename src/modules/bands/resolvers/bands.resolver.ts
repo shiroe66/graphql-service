@@ -21,11 +21,13 @@ export class BandsResolver {
   async genres(@Parent() band: CreateBand) {
     const { genresIds } = band
 
-    return Promise.all(
+    const data = await Promise.all(
       genresIds.map((genre: string) => {
         return this.genresService.getById(genre)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @Mutation('createBand')

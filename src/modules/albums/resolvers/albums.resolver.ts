@@ -30,44 +30,52 @@ export class AlbumsResolver {
   async artists(@Parent() album: CreateAlbum) {
     const { artistsIds } = album
 
-    return await Promise.all(
+    const data = await Promise.all(
       artistsIds.map((artist: string) => {
         return this.artistsService.getById(artist)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @ResolveField()
   async bands(@Parent() album: CreateAlbum) {
     const { bandsIds } = album
 
-    return await Promise.all(
+    const data = await Promise.all(
       bandsIds.map((band: string) => {
         return this.bandsServices.getById(band)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @ResolveField()
   async tracks(@Parent() album: CreateAlbum) {
     const { tracksIds } = album
 
-    return await Promise.all(
+    const data = await Promise.all(
       tracksIds.map((track: string) => {
         return this.tracksService.getById(track)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @ResolveField()
   async genres(@Parent() album: CreateAlbum) {
     const { genresIds } = album
 
-    return await Promise.all(
+    const data = await Promise.all(
       genresIds.map((genres: string) => {
         return this.genresService.getById(genres)
       })
     )
+
+    return data.filter((data) => data)
   }
 
   @Mutation('createAlbum')
