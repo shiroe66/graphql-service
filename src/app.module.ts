@@ -5,8 +5,9 @@ import { join } from 'path'
 import { ArtistsModule } from './modules/artists/artists.module'
 import { UsersModule } from './modules/users/users.module'
 import { GenresModule } from './modules/genres/genres.module'
-import { BandsModule } from './modules/bands/bands.module';
-import { AlbumsModule } from './modules/albums/albums.module';
+import { BandsModule } from './modules/bands/bands.module'
+import { AlbumsModule } from './modules/albums/albums.module'
+import { Artist } from './graphql'
 
 @Module({
   imports: [

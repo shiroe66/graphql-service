@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { BandsResolver } from './bands.resolver';
-import { BandsService } from './bands.service';
+import { Module } from '@nestjs/common'
+import { BandsResolver } from './resolvers/bands.resolver'
+import { BandsService } from './services/bands.service'
 
 @Module({
-  providers: [BandsResolver, BandsService]
+  providers: [BandsResolver, BandsService],
 })
 export class BandsModule {}

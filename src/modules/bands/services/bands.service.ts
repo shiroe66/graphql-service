@@ -12,13 +12,13 @@ export class BandsService {
 
   async getById(id: string) {
     const { data } = await this.client.get(`/${id}`)
-    return data
+    return { ...data, id: data._id }
   }
 
   async getAll({ limit, offset }: Paginate) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }

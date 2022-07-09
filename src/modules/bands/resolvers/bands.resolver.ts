@@ -1,6 +1,6 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { CreateBand, UpdateBand } from 'src/graphql'
-import { BandsService } from './bands.service'
+import { BandsService } from '../services/bands.service'
 
 @Resolver()
 export class BandsResolver {

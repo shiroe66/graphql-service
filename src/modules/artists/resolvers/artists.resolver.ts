@@ -1,6 +1,6 @@
 import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { CreateArtist, UpdateArtist } from 'src/graphql'
-import { BandsService } from '../../bands/bands.service'
+import { BandsService } from '../../bands/services/bands.service'
 import { ArtistsService } from '../services/artists.service'
 
 @Resolver('Artist')
