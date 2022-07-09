@@ -1,5 +1,5 @@
 type Genre {
-  _id: ID!
+  id: ID!
   name: String
   description: String
   country: String
@@ -28,7 +28,7 @@ input UpdateGenre {
 }
 
 type Query {
-  genres(Paginate: Paginate): GenresData
+  genres(limit: Int, offset: Int): GenresData
   genre(id: ID!): Genre
 }
 

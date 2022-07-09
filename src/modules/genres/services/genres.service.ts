@@ -13,12 +13,16 @@ export class GenresService {
 
   async getById(id: string) {
     const { data } = await this.client.get(`/${id}`)
-    return data
+    return { ...data, id: data._id }
   }
 
-  async getAll({ limit, offset }: Paginate) {
+  async getAll({ limit, offset }) {
     try {
       const { data } = await this.client.get(`?limit=${limit}&offset=${offset}`)
+      data.items = data.items.map((item) => ({
+        ...item,
+        id: item._id,
+      }))
       return data
     } catch (error) {
       console.error(error)
@@ -30,7 +34,7 @@ export class GenresService {
       const { data } = await this.client.post('/', genre, {
         headers: { Authorization: token },
       })
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }
@@ -41,7 +45,7 @@ export class GenresService {
       const { data } = await this.client.put(`/${id}`, genre, {
         headers: { Authorization: token },
       })
-      return data
+      return { ...data, id: data._id }
     } catch (error) {
       console.error(error)
     }

@@ -7,6 +7,11 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface Paginate {
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+}
+
 export interface CreateAlbum {
     name: string;
     released?: Nullable<number>;
@@ -26,11 +31,6 @@ export interface UpdateAlbum {
     genres?: Nullable<Nullable<string>[]>;
 }
 
-export interface Paginate {
-    limit?: Nullable<number>;
-    offset?: Nullable<number>;
-}
-
 export interface CreateArtist {
     firstName: string;
     secondName: string;
@@ -38,7 +38,7 @@ export interface CreateArtist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country: string;
-    bands?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     instruments?: Nullable<Nullable<string>[]>;
 }
 
@@ -50,31 +50,25 @@ export interface UpdateArtist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
-    bands?: Nullable<Nullable<CreateBand>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     instruments?: Nullable<string>;
 }
 
 export interface CreateBand {
     name: string;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<MemberInput>[]>;
+    members?: Nullable<Nullable<string>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<CreateGenre>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateBand {
     _id?: Nullable<string>;
     name?: Nullable<string>;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<MemberInput>[]>;
+    members?: Nullable<Nullable<string>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<UpdateGenre>[]>;
-}
-
-export interface MemberInput {
-    artist?: Nullable<string>;
-    instrument?: Nullable<string>;
-    years?: Nullable<string>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface CreateGenre {
@@ -128,11 +122,11 @@ export interface AlbumData {
 export interface IQuery {
     albums(Paginate?: Nullable<Paginate>): Nullable<AlbumData> | Promise<Nullable<AlbumData>>;
     album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
-    artists(Paginate?: Nullable<Paginate>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
+    artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<ArtistData> | Promise<Nullable<ArtistData>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
-    bands(Paginate?: Nullable<Paginate>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
+    bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
-    genres(Paginate?: Nullable<Paginate>): Nullable<GenresData> | Promise<Nullable<GenresData>>;
+    genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<GenresData> | Promise<Nullable<GenresData>>;
     genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login: Login): Nullable<JWT> | Promise<Nullable<JWT>>;
@@ -155,7 +149,7 @@ export interface IMutation {
 }
 
 export interface Artist {
-    _id: string;
+    id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -174,7 +168,7 @@ export interface ArtistData {
 }
 
 export interface Band {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
@@ -205,7 +199,7 @@ export interface Favourites {
 }
 
 export interface Genre {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;

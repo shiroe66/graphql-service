@@ -1,8 +1,8 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { CreateGenre, Paginate, UpdateGenre } from 'src/graphql'
-import { GenresService } from './genres.service'
+import { CreateGenre, UpdateGenre } from 'src/graphql'
+import { GenresService } from '../services/genres.service'
 
-@Resolver()
+@Resolver('Genre')
 export class GenresResolver {
   constructor(private readonly genresService: GenresService) {}
   @Query('genre')
@@ -11,7 +11,7 @@ export class GenresResolver {
   }
 
   @Query('genres')
-  getGenres(@Args('paginate') { limit, offset }: Paginate) {
+  getGenres(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.genresService.getAll({ limit, offset })
   }
 
