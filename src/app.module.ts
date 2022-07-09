@@ -1,4 +1,4 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { ApolloDriver } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { join } from 'path'
@@ -7,7 +7,6 @@ import { UsersModule } from './modules/users/users.module'
 import { GenresModule } from './modules/genres/genres.module'
 import { BandsModule } from './modules/bands/bands.module'
 import { AlbumsModule } from './modules/albums/albums.module'
-import { Artist } from './graphql'
 
 @Module({
   imports: [
@@ -24,9 +23,9 @@ import { Artist } from './graphql'
       driver: ApolloDriver,
     }),
     ArtistsModule,
-    UsersModule,
-    GenresModule,
     BandsModule,
+    GenresModule,
+    UsersModule,
     AlbumsModule,
   ],
 })
