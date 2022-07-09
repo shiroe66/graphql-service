@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
-import { CreateGenre, Paginate, UpdateGenre } from 'src/graphql'
+import { CreateGenre, UpdateGenre } from 'src/graphql'
 
 @Injectable()
 export class GenresService {

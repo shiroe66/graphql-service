@@ -1,6 +1,6 @@
 import { Resolver, Query, Args, ResolveField, Mutation, Context, Parent } from '@nestjs/graphql'
 import { CreateTrack, UpdateTrack } from 'src/graphql'
-import { AlbumsService } from 'src/modules/albums/albums.service'
+import { AlbumsService } from 'src/modules/albums/services/albums.service'
 import { ArtistsService } from 'src/modules/artists/services/artists.service'
 import { BandsService } from 'src/modules/bands/services/bands.service'
 import { GenresService } from 'src/modules/genres/services/genres.service'
