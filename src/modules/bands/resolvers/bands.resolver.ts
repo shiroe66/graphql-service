@@ -22,7 +22,7 @@ export class BandsResolver {
     const { genresIds } = band
 
     return Promise.all(
-      genresIds.map((genre) => {
+      genresIds.map((genre: string) => {
         return this.genresService.getById(genre)
       })
     )

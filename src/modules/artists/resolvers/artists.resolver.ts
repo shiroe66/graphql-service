@@ -25,7 +25,7 @@ export class ArtistsResolver {
     const { bandsIds } = artist
 
     return await Promise.all(
-      bandsIds.map((band: any) => {
+      bandsIds.map((band: string) => {
         return this.bandsService.getById(band)
       })
     )
