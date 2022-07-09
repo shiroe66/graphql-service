@@ -29,7 +29,7 @@ export class BandsResolver {
   }
 
   @Mutation('createBand')
-  async createBand(@Args('band') band: CreateBand, @Context('token') token: any) {
+  async createBand(@Args('band') band: CreateBand, @Context('token') token: string) {
     return this.bandsService.create(band, token)
   }
 
@@ -37,13 +37,13 @@ export class BandsResolver {
   async updateBand(
     @Args('id') id: string,
     @Args('band') band: UpdateBand,
-    @Context('token') token: any
+    @Context('token') token: string
   ) {
     return this.bandsService.update(id, band, token)
   }
 
   @Mutation('deleteBand')
-  async deleteBand(@Args('id') id: string, @Context('token') token: any) {
+  async deleteBand(@Args('id') id: string, @Context('token') token: string) {
     return this.bandsService.delete(id, token)
   }
 }

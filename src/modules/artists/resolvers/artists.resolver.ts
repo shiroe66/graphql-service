@@ -32,7 +32,7 @@ export class ArtistsResolver {
   }
 
   @Mutation('createArtist')
-  async createArtist(@Args('artist') artist: CreateArtist, @Context('token') token: any) {
+  async createArtist(@Args('artist') artist: CreateArtist, @Context('token') token: string) {
     return this.artistsService.create(artist, token)
   }
 
@@ -40,13 +40,13 @@ export class ArtistsResolver {
   async updateArtist(
     @Args('id') id: string,
     @Args('artist') artist: UpdateArtist,
-    @Context('token') token: any
+    @Context('token') token: string
   ) {
     return this.artistsService.update(id, artist, token)
   }
 
   @Mutation('deleteArtist')
-  async deleteArtist(@Args('id') id: string, @Context('token') token: any) {
+  async deleteArtist(@Args('id') id: string, @Context('token') token: string) {
     return this.artistsService.delete(id, token)
   }
 }

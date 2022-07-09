@@ -28,7 +28,7 @@ export class BandsService {
     }
   }
 
-  async create(band: CreateBand, token: any) {
+  async create(band: CreateBand, token: string) {
     try {
       const { data } = await this.client.post('/', band, {
         headers: { Authorization: token },
@@ -40,7 +40,7 @@ export class BandsService {
     }
   }
 
-  async update(id: string, band: UpdateBand, token: any) {
+  async update(id: string, band: UpdateBand, token: string) {
     try {
       const { data } = await this.client.put(`/${id}`, band, {
         headers: { Authorization: token },
@@ -52,7 +52,7 @@ export class BandsService {
     }
   }
 
-  async delete(id: string, token: any) {
+  async delete(id: string, token: string) {
     try {
       const { data } = await this.client.delete(`/${id}`, { headers: { Authorization: token } })
       return data

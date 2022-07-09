@@ -27,7 +27,7 @@ export class ArtistsService {
     }
   }
 
-  async create(artist: CreateArtist, token: any) {
+  async create(artist: CreateArtist, token: string) {
     try {
       const { data } = await this.client.post('/', artist, {
         headers: { Authorization: token },
@@ -39,7 +39,7 @@ export class ArtistsService {
     }
   }
 
-  async update(id: string, artist: UpdateArtist, token: any) {
+  async update(id: string, artist: UpdateArtist, token: string) {
     try {
       const { data } = await this.client.put(`/${id}`, artist, {
         headers: { Authorization: token },
@@ -51,7 +51,7 @@ export class ArtistsService {
     }
   }
 
-  async delete(id: string, token: any) {
+  async delete(id: string, token: string) {
     try {
       const { data } = await this.client.delete(`/${id}`, { headers: { Authorization: token } })
       return data
