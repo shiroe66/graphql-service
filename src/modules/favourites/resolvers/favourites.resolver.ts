@@ -53,7 +53,6 @@ export class FavouritesResolver {
         return this.bandsService.getById(band)
       })
     )
-    console.log(data)
 
     return data.filter((data) => data)
   }
@@ -70,6 +69,24 @@ export class FavouritesResolver {
     const data = await Promise.all(
       artistsIds.map((artist: string) => {
         return this.artistsSerivce.getById(artist)
+      })
+    )
+
+    return data.filter((data) => data)
+  }
+
+  @Mutation('addGenreToFavourites')
+  async addGenreToFavourites(@Args('id') id: string, @Context('token') token: string) {
+    return this.favouritesService.genres(id, token)
+  }
+
+  @ResolveField()
+  async genres(@Parent() favourites: FavouritesResponse) {
+    const { genresIds } = favourites
+
+    const data = await Promise.all(
+      genresIds.map((genres: string) => {
+        return this.genresService.getById(genres)
       })
     )
 

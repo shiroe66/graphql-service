@@ -35,8 +35,18 @@ export class FavouritesService {
 
   async artist(id: string, token: string) {
     const { data } = await this.client.put(
-      '/',
+      '/add',
       { type: 'artists', id },
+      { headers: { Authorization: token } }
+    )
+
+    return { ...data, id: data._id }
+  }
+
+  async genres(id: string, token: string) {
+    const { data } = await this.client.put(
+      '/add',
+      { type: 'genres', id },
       { headers: { Authorization: token } }
     )
 
