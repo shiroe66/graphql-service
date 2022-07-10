@@ -144,6 +144,7 @@ export interface IQuery {
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<BandsData> | Promise<Nullable<BandsData>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    favourites(): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<GenresData> | Promise<Nullable<GenresData>>;
     genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<TrackData> | Promise<Nullable<TrackData>>;
@@ -162,6 +163,10 @@ export interface IMutation {
     createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
     updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    addTrackToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addBandToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addArtistToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addGenreToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
@@ -219,6 +224,14 @@ export interface Favourites {
     genres?: Nullable<Nullable<Genre>[]>;
     artists?: Nullable<Nullable<Artist>[]>;
     tracks?: Nullable<Nullable<Track>[]>;
+}
+
+export interface FavouritesResponse {
+    userId?: Nullable<string>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    tracksIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface Genre {
