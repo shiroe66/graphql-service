@@ -12,8 +12,12 @@ export class GenresService {
   }
 
   async getById(id: string) {
-    const { data } = await this.client.get(`/${id}`)
-    return { ...data, id: data._id }
+    try {
+      const { data } = await this.client.get(`/${id}`)
+      return { ...data, id: data._id }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   async getAll({ limit, offset }) {
