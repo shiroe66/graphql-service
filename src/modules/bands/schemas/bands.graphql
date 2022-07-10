@@ -43,7 +43,13 @@ type Mutation {
 }
 
 type Member {
-  artist: String
+  artist: Artist!
+  instrument: String
+  years: String
+}
+
+input CreateMember {
+  artist: ID!
   instrument: String
   years: String
 }

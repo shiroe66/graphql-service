@@ -68,6 +68,12 @@ export interface UpdateBand {
     genresIds?: Nullable<Nullable<string>[]>;
 }
 
+export interface CreateMember {
+    artist: string;
+    instrument?: Nullable<string>;
+    years?: Nullable<string>;
+}
+
 export interface CreateGenre {
     name: string;
     description?: Nullable<string>;
@@ -212,7 +218,7 @@ export interface BandsData {
 }
 
 export interface Member {
-    artist?: Nullable<string>;
+    artist: Artist;
     instrument?: Nullable<string>;
     years?: Nullable<string>;
 }

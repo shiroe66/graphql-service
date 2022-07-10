@@ -1,11 +1,16 @@
 import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
-import { CreateBand, UpdateBand } from 'src/graphql'
+import { CreateBand, CreateMember, Member, UpdateBand } from 'src/graphql'
+import { ArtistsService } from 'src/modules/artists/services/artists.service'
 import { GenresService } from 'src/modules/genres/services/genres.service'
 import { BandsService } from '../services/bands.service'
 
 @Resolver('Band')
 export class BandsResolver {
-  constructor(private readonly bandsService: BandsService, private genresService: GenresService) {}
+  constructor(
+    private readonly bandsService: BandsService,
+    private genresService: GenresService,
+    private artistsService: ArtistsService
+  ) {}
 
   @Query('band')
   async getById(@Args('id') id: string) {
@@ -28,6 +33,16 @@ export class BandsResolver {
     )
 
     return data.filter((data) => data)
+  }
+
+  @ResolveField()
+  async members(@Parent() band: CreateBand) {
+    const { members } = band
+
+    return members.map(async (member: CreateMember): Promise<Member> => {
+      const artist = await this.artistsService.getById(member.artist)
+      return { ...member, artist }
+    })
   }
 
   @Mutation('createBand')
