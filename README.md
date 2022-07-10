@@ -33,6 +33,9 @@ Rename file **.env.example** to **.env**
 ## Running the app
 
 ```bash
+# Server starting at PORT in .env file
+# GraphQL link: localhost:3000/graphql
+
 # development
 npm run start
 
