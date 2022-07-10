@@ -54,7 +54,7 @@ export interface UpdateArtist {
 export interface CreateBand {
     name: string;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<string>[]>;
+    members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
     genresIds?: Nullable<Nullable<string>[]>;
 }
@@ -63,7 +63,7 @@ export interface UpdateBand {
     _id?: Nullable<string>;
     name?: Nullable<string>;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<string>[]>;
+    members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
     genresIds?: Nullable<Nullable<string>[]>;
 }

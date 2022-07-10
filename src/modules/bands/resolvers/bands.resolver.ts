@@ -39,7 +39,7 @@ export class BandsResolver {
   async members(@Parent() band: CreateBand) {
     const { members } = band
 
-    return members.map(async (member: CreateMember): Promise<Member> => {
+    return members.map(async (member: CreateMember) => {
       const artist = await this.artistsService.getById(member.artist)
       return { ...member, artist }
     })
