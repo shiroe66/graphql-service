@@ -26,7 +26,6 @@ input CreateTrack {
 }
 
 input UpdateTrack {
-  id: ID!
   title: String!
   albumId: ID
   artistsIds: [ID]

@@ -29,7 +29,6 @@ input CreateArtist {
 }
 
 input UpdateArtist {
-  _id: ID
   firstName: String
   secondName: String
   middleName: String

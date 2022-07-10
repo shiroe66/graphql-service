@@ -27,7 +27,6 @@ input CreateAlbum {
 }
 
 input UpdateAlbum {
-  id: ID
   name: String
   released: Int
   artistsIds: [ID]

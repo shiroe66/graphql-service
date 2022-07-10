@@ -23,7 +23,6 @@ input CreateBand {
 }
 
 input UpdateBand {
-  _id: ID
   name: String
   origin: String
   members: [CreateMember]
