@@ -18,7 +18,6 @@ export interface CreateAlbum {
 }
 
 export interface UpdateAlbum {
-    id?: Nullable<string>;
     name?: Nullable<string>;
     released?: Nullable<number>;
     artistsIds?: Nullable<Nullable<string>[]>;
@@ -40,7 +39,6 @@ export interface CreateArtist {
 }
 
 export interface UpdateArtist {
-    _id?: Nullable<string>;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -60,7 +58,6 @@ export interface CreateBand {
 }
 
 export interface UpdateBand {
-    _id?: Nullable<string>;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<CreateMember>[]>;
@@ -99,7 +96,6 @@ export interface CreateTrack {
 }
 
 export interface UpdateTrack {
-    id: string;
     title: string;
     albumId?: Nullable<string>;
     artistsIds?: Nullable<Nullable<string>[]>;
