@@ -45,3 +45,13 @@ npm run start:dev
 # production mode
 npm run start:prod
 ```
+
+## Usage
+
+After login add this in HTTP headers
+
+```bash
+{
+  "Authorization": "Bearer addHereYourJWT"
+}
+```
